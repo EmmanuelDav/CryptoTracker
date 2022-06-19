@@ -38,6 +38,7 @@ fun CryptoTrackerTheme(
         LightColorPalette
     }
 
+
     MaterialTheme(
         colors = colors,
         typography = Typography,
