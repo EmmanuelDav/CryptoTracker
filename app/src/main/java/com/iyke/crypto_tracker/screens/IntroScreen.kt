@@ -1,9 +1,11 @@
 package com.iyke.crypto_tracker.screens
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -11,21 +13,60 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
 import com.iyke.crypto_tracker.ui.theme.LightGrayColor
 import com.iyke.crypto_tracker.ui.theme.PinkColor
 import com.iyke.crypto_tracker.ui.theme.blue
 
+class IntroScreen : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            CryptoTrackerTheme {
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    Greeting(name = "")
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
 @Composable
-fun IntroScreen() {
+fun DefaultPreview() {
+    CryptoTrackerTheme {
+        Greeting("Android")
+    }
+}
+
+@Composable
+fun Greeting(name: String) {
+    val navigation = rememberNavController()
+    NavHost(navController = navigation, startDestination = "splash_screen") {
+        composable("splash_screen") {
+            Screen()
+        }
+    }
+}
+
+@Composable
+fun Screen() {
     Card(elevation = 4.dp) {
-        Image(painter = painterResource(id = R.drawable.action), contentDescription = null, modifier = Modifier.fillMaxSize())
+        Image(painter = painterResource(id = R.drawable.action), contentDescription = null, modifier = Modifier.fillMaxWidth(),
+        contentScale = ContentScale.FillHeight)
         Column(
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.Start,

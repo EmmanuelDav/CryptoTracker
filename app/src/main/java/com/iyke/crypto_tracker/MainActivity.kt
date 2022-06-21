@@ -29,27 +29,27 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    //Greeting("Android")
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    val navigation = rememberNavController()
-    NavHost(navController = navigation, startDestination = "splash_screen") {
-        composable("splash_screen") {
-            IntroScreen()
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CryptoTrackerTheme {
-        Greeting("Android")
-    }
-}
+//@Composable
+//fun Greeting(name: String) {
+//    val navigation = rememberNavController()
+//    NavHost(navController = navigation, startDestination = "splash_screen") {
+//        composable("splash_screen") {
+//            IntroScreen()
+//        }
+//    }
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    CryptoTrackerTheme {
+//        Greeting("Android")
+//    }
+//}

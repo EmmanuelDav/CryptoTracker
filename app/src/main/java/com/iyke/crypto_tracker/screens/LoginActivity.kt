@@ -1,6 +1,10 @@
 package com.iyke.crypto_tracker.screens
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -11,12 +15,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.iyke.crypto_tracker.common.CommonGoogleButton
 import com.iyke.crypto_tracker.common.CommonLoginButton
 import com.iyke.crypto_tracker.common.CommonText
 import com.iyke.crypto_tracker.common.CommonTextField
+import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
 import com.iyke.crypto_tracker.ui.theme.LightGrayColor
 import com.iyke.crypto_tracker.ui.theme.PinkColor
+
 
 
 @Composable
