@@ -1,5 +1,6 @@
 package com.iyke.crypto_tracker.screens
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,15 +15,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.iyke.crypto_tracker.MainActivity
 import com.iyke.crypto_tracker.R
 import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
 import com.iyke.crypto_tracker.ui.theme.LightGrayColor
@@ -64,6 +68,8 @@ fun Greeting(name: String) {
 
 @Composable
 fun Screen() {
+    val context = LocalContext.current
+
     Card(elevation = 4.dp) {
         Image(painter = painterResource(id = R.drawable.action), contentDescription = null, modifier = Modifier.fillMaxWidth(),
         contentScale = ContentScale.FillHeight)
@@ -106,15 +112,14 @@ fun Screen() {
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Transparent
                     ),
-                    onClick = { },
+                    onClick = {
+                           context.startActivity(Intent(context,MainActivity::class.java))
+                    },
                     elevation = ButtonDefaults.elevation(0.dp, 0.dp)
                 ) {
                     Text(text = "Get Started", fontSize = 20.sp, color = Color.White)
                 }
-
             }
-
         }
-
     }
 }
