@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.ui.theme.Black
 
 
 @Composable
@@ -21,7 +22,7 @@ fun ProfileScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
+            .background(color = Black)
             .wrapContentSize(Alignment.Center)
     ) {
         Text(

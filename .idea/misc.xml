@@ -18,9 +18,21 @@
         <entry key="../../../../layout/compose-model-1655826374218.xml" value="0.12880067567567569" />
         <entry key="../../../../layout/compose-model-1655898070504.xml" value="0.18" />
         <entry key="../../../../layout/compose-model-1655898387078.xml" value="0.2491554054054054" />
+        <entry key="../../../../layout/compose-model-1655900183554.xml" value="0.2491554054054054" />
+        <entry key="../../../../layout/compose-model-1655900412593.xml" value="0.22" />
+        <entry key="../../../../layout/compose-model-1655905231287.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1655907193954.xml" value="0.2" />
+        <entry key="../../../../layout/compose-model-1655908517110.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_baseline_account_balance_wallet_24.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/ic_baseline_show_chart_24.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/login-48px.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/login_48px.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/logout-48px.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/multiline_chart-48px.xml" value="0.147" />
       </map>
     </option>
   </component>
