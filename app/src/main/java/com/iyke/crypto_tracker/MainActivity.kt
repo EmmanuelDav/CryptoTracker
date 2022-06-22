@@ -1,7 +1,5 @@
 package com.iyke.crypto_tracker
 
-import android.annotation.SuppressLint
-import android.graphics.Color.blue
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +22,7 @@ import com.iyke.crypto_tracker.screens.CoinScreen
 import com.iyke.crypto_tracker.screens.HomeScreen
 import com.iyke.crypto_tracker.screens.ProfileScreen
 import com.iyke.crypto_tracker.screens.WalletScreen
+import com.iyke.crypto_tracker.ui.theme.Teal200
 import com.iyke.crypto_trackersealed.BottomNavItem
 
 class MainActivity : ComponentActivity() {
@@ -36,11 +35,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreenView(){
+fun MainScreenView() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigation(navController = navController) }
-    ) { it
+    ) {
+        it
         NavigationGraph(navController = navController)
     }
 }
@@ -54,18 +54,22 @@ fun BottomNavigation(navController: NavController) {
         BottomNavItem.Profile
     )
     BottomNavigation(
-        backgroundColor = colorResource(id = R.color.teal_700),
-        contentColor = Color.Black
+        backgroundColor = colorResource(id = R.color.black),
+        contentColor = Teal200
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                label = { Text(text = item.title,
-                    fontSize = 9.sp) },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
+                label = {
+                    Text(
+                        text = item.title,
+                        fontSize = 9.sp
+                    )
+                },
+                selectedContentColor = Teal200,
+                unselectedContentColor = Teal200.copy(0.4f),
                 alwaysShowLabel = true,
                 selected = currentRoute == item.screen_route,
                 onClick = {

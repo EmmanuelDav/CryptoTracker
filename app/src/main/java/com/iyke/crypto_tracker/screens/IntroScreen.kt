@@ -30,10 +30,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.iyke.crypto_tracker.MainActivity
 import com.iyke.crypto_tracker.R
-import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
-import com.iyke.crypto_tracker.ui.theme.LightGrayColor
-import com.iyke.crypto_tracker.ui.theme.PinkColor
-import com.iyke.crypto_tracker.ui.theme.blue
+import com.iyke.crypto_tracker.ui.theme.*
 
 class IntroScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,65 +70,69 @@ fun Greeting(name: String) {
 fun Screen() {
     val context = LocalContext.current
     Column {
-        Card(elevation = 4.dp) {
+        Spacer(modifier = Modifier.height(100.dp))
+        Image(
+            painter = painterResource(id = R.drawable.btc),
+            contentDescription = null,
+            modifier = Modifier.fillMaxWidth(),
+            contentScale = ContentScale.FillHeight
+        )
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .background(color = Black, shape = RoundedCornerShape(2))
+                    .align(Alignment.BottomCenter)
+                    .padding(5.dp),
+                ) {
+                Spacer(modifier = Modifier.height(55.dp))
 
-            Image(
-                painter = painterResource(id = R.drawable.action),
-                contentDescription = null,
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.FillHeight
-            )
-            Box(modifier = Modifier.fillMaxSize()){
-                Column(
-                    modifier = Modifier.background(color = Color.Green, shape = RoundedCornerShape(5)).align(Alignment.BottomCenter),
+                Text(
+                    text = "The World Fastest Crypto Growing App",
+                    style = MaterialTheme.typography.body1,
+                    fontSize = 34.sp,
+                    color = White,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(15.dp))
+                Text(
+                    text = "Grow your portfolio by receiving rewards on your crypto growing asset!",
+                    fontSize = 18.sp,
+                    style = MaterialTheme.typography.body2,
+                    color = LightGrayColor,
+                    textAlign = TextAlign.Center
 
-
+                )
+                Spacer(modifier = Modifier.height(55.dp))
+                Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Button(
+                        modifier = Modifier
+                            .background(
+                                Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Teal200, blue
+                                    )
+                                ),
+                                RoundedCornerShape(20.dp)
+                            )
+                            .height(48.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color.Transparent
+                        ),
+                        onClick = {
+                            context.startActivity(Intent(context, MainActivity::class.java))
+                        },
+                        elevation = ButtonDefaults.elevation(0.dp, 0.dp)
                     ) {
-                    Spacer(modifier = Modifier.height(35.dp))
-
-                    Text(
-                        text = "The World Fastest Crypto Growing App",
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 34.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "Grow your portfolio by receiving rewards on your crypto growing asset!",
-                        fontSize = 18.sp,
-                        style = MaterialTheme.typography.body2,
-                        color = LightGrayColor,
-                        textAlign = TextAlign.Center
-
-                    )
-                    Spacer(modifier = Modifier.height(45.dp))
-                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        Button(
-                            modifier = Modifier
-                                .background(
-                                    Brush.horizontalGradient(
-                                        colors = listOf(
-                                            PinkColor, blue
-                                        )
-                                    ),
-                                    RoundedCornerShape(20.dp)
-                                )
-                                .height(58.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                backgroundColor = Color.Transparent
-                            ),
-                            onClick = {
-                                context.startActivity(Intent(context, MainActivity::class.java))
-                            },
-                            elevation = ButtonDefaults.elevation(0.dp, 0.dp)
-                        ) {
-                            Text(text = "Get Started", fontSize = 20.sp, color = Color.White)
-                        }
+                        Text(
+                            text = "Get Started",
+                            fontSize = 20.sp,
+                            color = Color.White,
+                            style = MaterialTheme.typography.h2
+                        )
                     }
-                    Spacer(modifier = Modifier.height(35.dp))
                 }
-
+                Spacer(modifier = Modifier.height(45.dp))
             }
         }
     }
