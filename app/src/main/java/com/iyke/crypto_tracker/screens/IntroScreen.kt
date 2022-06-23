@@ -58,12 +58,8 @@ fun DefaultPreview() {
 
 @Composable
 fun Greeting(name: String) {
-    val navigation = rememberNavController()
-    NavHost(navController = navigation, startDestination = "splash_screen") {
-        composable("splash_screen") {
             Screen()
-        }
-    }
+
 }
 
 @Composable
@@ -80,11 +76,11 @@ fun Screen() {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
-                    .background(color = Black, shape = RoundedCornerShape(2))
+                    .background(color = Black, shape = RoundedCornerShape(0))
                     .align(Alignment.BottomCenter)
                     .padding(5.dp),
                 ) {
-                Spacer(modifier = Modifier.height(55.dp))
+                Spacer(modifier = Modifier.height(35.dp))
 
                 Text(
                     text = "The World Fastest Crypto Growing App",

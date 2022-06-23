@@ -4,6 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -19,6 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.common.ListItem
+import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.ui.theme.Black
 import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
 
@@ -43,7 +48,7 @@ fun HomeScreen() {
         Row(modifier = Modifier.fillMaxWidth()) {
             Column {
                 Text(
-                    text = "Total balance",
+                    text = "Total balance     ",
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     modifier = Modifier
@@ -54,7 +59,7 @@ fun HomeScreen() {
                 )
 
                 Text(
-                    text = "     2000.09 USD",
+                    text = "  2000.09 USD",
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     modifier = Modifier
@@ -95,9 +100,8 @@ fun HomeScreen() {
             verticalAlignment = Alignment.Bottom
         ) {
 
-            Box() {
+            Box {
                 Column {
-
                     Image(
                         painter = painterResource(id = R.drawable.login),
                         contentDescription = null,
@@ -120,7 +124,7 @@ fun HomeScreen() {
 
             }
 
-            Box() {
+            Box {
                 Column {
 
                     Image(
@@ -140,12 +144,10 @@ fun HomeScreen() {
                         fontSize = 12.sp,
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
-
                 }
-
-
             }
-            Box() {
+
+            Box {
                 Column {
 
                     Image(
@@ -170,12 +172,30 @@ fun HomeScreen() {
             }
         }
 
-        Row( modifier = Modifier.fillMaxWidth().padding(20.dp),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text("Start")
-            Text("End")
+            Text(
+                "  Portfolio", fontWeight = FontWeight.Bold,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                fontSize = 12.sp
+            )
+            Text(
+                "See all", fontWeight = FontWeight.Bold,
+                color = Color.Gray,
+                textAlign = TextAlign.Center,
+                fontSize = 12.sp,
+            )
         }
 
+        LazyRow(modifier = Modifier.fillMaxSize(1F)) {
+            items(items = list) { item ->
+                ListItem(item);
+            }
+        }
     }
 }

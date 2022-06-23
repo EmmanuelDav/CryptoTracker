@@ -1,18 +1,23 @@
 package com.iyke.crypto_tracker.common
 
+import android.app.LauncherActivity
+import android.widget.ListView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -20,6 +25,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.model.Portfolio_coins
 import com.iyke.crypto_tracker.ui.theme.LightGrayColor
 import com.iyke.crypto_tracker.ui.theme.PinkColor
 import com.iyke.crypto_tracker.ui.theme.blue
@@ -135,4 +141,37 @@ fun CommonTextField(
         else VisualTransformation.None
     )
 }
+@Composable
+fun ListItem(item:Portfolio_coins) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp)
+            .height(60.dp)
+            .background(color = Color.Gray)
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 8.dp)
+                .fillMaxWidth()
+        ) {
+            Image(
+                painter = painterResource(id = item.coinLogo),
+                contentDescription = "user icon",
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .align(CenterVertically)
+            )
+            Text(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .align(CenterVertically),
+                text = item.coinShotName,
+                color = Color.White,
+                fontSize = 16.sp
+            )
+        }
+    }
+}
+
 
