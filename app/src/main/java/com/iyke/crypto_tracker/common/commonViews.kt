@@ -1,23 +1,18 @@
 package com.iyke.crypto_tracker.common
 
-import android.app.LauncherActivity
-import android.widget.ListView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -25,9 +20,10 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
-import com.iyke.crypto_tracker.model.Portfolio_coins
+import com.iyke.crypto_tracker.model.PortfolioCoins
 import com.iyke.crypto_tracker.ui.theme.LightGrayColor
 import com.iyke.crypto_tracker.ui.theme.PinkColor
+import com.iyke.crypto_tracker.ui.theme.Teal200
 import com.iyke.crypto_tracker.ui.theme.blue
 
 
@@ -46,7 +42,7 @@ fun CommonText(
         fontWeight = fontWeight,
         modifier = Modifier.clickable {
             function()
-            }
+        }
     )
 }
 
@@ -141,34 +137,94 @@ fun CommonTextField(
         else VisualTransformation.None
     )
 }
+
 @Composable
-fun ListItem(item:Portfolio_coins) {
+fun ListItem(item: PortfolioCoins) {
     Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp)
-            .height(60.dp)
-            .background(color = Color.Gray)
+            .padding(8.dp)
+            .width(200.dp)
+            .border(2.dp,  Brush.horizontalGradient(
+                colors = listOf(
+                    Teal200, Color.Gray, blue
+                )
+            ), RoundedCornerShape(5))
+            .padding(15.dp)
+            .height(210.dp)
     ) {
-        Row(
+        Image(
+            painter = painterResource(id = item.coinLogo),
+            contentDescription = "user icon",
             modifier = Modifier
-                .padding(horizontal = 8.dp)
-                .fillMaxWidth()
+                .size(70.dp)
+                .align(Alignment.BottomStart)
+                .padding(10.dp)
+
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_baseline_show_chart_24),
+            contentDescription = "user icon",
+            modifier = Modifier
+                .size(100.dp)
+                .align(Alignment.Center)
+                .padding(10.dp)
+        )
+        Column(
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(10.dp)
         ) {
-            Image(
-                painter = painterResource(id = item.coinLogo),
-                contentDescription = "user icon",
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .align(CenterVertically)
-            )
             Text(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .align(CenterVertically),
+                text = item.coinName,
+                color = Color.White,
+                fontSize = 15.sp
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Text(
                 text = item.coinShotName,
                 color = Color.White,
-                fontSize = 16.sp
+                fontSize = 12.sp
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(10.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_baseline_arrow_drop_up_24),
+                contentDescription = "user icon",
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = item.todaysPerf,
+                color = Color.Green,
+                fontSize = 10.sp,
+                modifier = Modifier.align(Alignment.CenterVertically)
+            )
+
+        }
+
+        Column(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(10.dp)
+        ) {
+            Text(
+                text = item.currency,
+                color = Color.White,
+                fontSize = 16.sp,
+                modifier = Modifier.align(Alignment.End)
+            )
+
+            Spacer(modifier = Modifier.height(2.dp))
+
+            Text(
+                text = item.currentPrice,
+                color = Color.White,
+                fontSize = 16.sp,
             )
         }
     }

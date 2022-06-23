@@ -1,6 +1,6 @@
 package com.iyke.crypto_tracker.model
 
-class Portfolio_coins(
+class PortfolioCoins(
     var coinName: String,
     var currentPrice: String,
     var todaysPerf: String,

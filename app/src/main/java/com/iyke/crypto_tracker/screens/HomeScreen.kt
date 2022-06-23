@@ -41,7 +41,7 @@ fun HomeScreen() {
     Column(
         modifier = Modifier
             .background(color = Black)
-            .wrapContentSize(Alignment.TopStart)
+            .wrapContentSize(Alignment.TopStart).padding(5.dp)
     ) {
         Spacer(modifier = Modifier.height(40.dp))
 
@@ -52,8 +52,7 @@ fun HomeScreen() {
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(10.dp),
+                        .align(Alignment.CenterHorizontally),
                     textAlign = TextAlign.Center,
                     fontSize = 16.sp
                 )
