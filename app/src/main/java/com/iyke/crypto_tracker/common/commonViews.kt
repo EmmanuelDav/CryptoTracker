@@ -280,8 +280,8 @@ fun ListColumn(item: PortfolioCoins) {
 
                 Text(
                     text = item.todaysIncORDec,
-                    color = Color.White,
-                    fontSize = 16.sp,
+                    color = Color.Green,
+                    fontSize = 13.sp,
                     textAlign = TextAlign.End,
                     modifier = Modifier.align(Alignment.End)
                 )

@@ -59,7 +59,6 @@ fun DefaultPreview() {
 @Composable
 fun Greeting(name: String) {
             Screen()
-
 }
 
 @Composable

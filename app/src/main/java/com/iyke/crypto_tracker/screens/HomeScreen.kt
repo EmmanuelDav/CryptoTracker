@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,7 +41,8 @@ fun HomeScreen() {
     Column(
         modifier = Modifier
             .background(color = Black)
-            .wrapContentSize(Alignment.TopStart).padding(5.dp)
+            .wrapContentSize(Alignment.TopStart)
+            .padding(5.dp)
     ) {
         Spacer(modifier = Modifier.height(40.dp))
 
@@ -53,7 +55,8 @@ fun HomeScreen() {
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally),
                     textAlign = TextAlign.Center,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.body1
                 )
 
                 Text(
@@ -64,7 +67,9 @@ fun HomeScreen() {
                         .align(Alignment.CenterHorizontally)
                         .padding(10.dp),
                     textAlign = TextAlign.Center,
-                    fontSize = 20.sp
+                    fontSize = 20.sp,
+                    style = MaterialTheme.typography.subtitle1
+
                 )
             }
 
@@ -79,7 +84,9 @@ fun HomeScreen() {
                     fontWeight = FontWeight.Bold,
                     color = Color.Green,
                     textAlign = TextAlign.Center,
-                    fontSize = 15.sp
+                    fontSize = 15.sp,
+                    style = MaterialTheme.typography.subtitle1
+
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
@@ -87,7 +94,9 @@ fun HomeScreen() {
                     fontWeight = FontWeight.Bold,
                     color = Color.Gray,
                     textAlign = TextAlign.Center,
-                    fontSize = 12.sp
+                    fontSize = 12.sp,
+                    style = MaterialTheme.typography.subtitle1
+
                 )
             }
 
@@ -115,7 +124,9 @@ fun HomeScreen() {
                         color = Color.Gray,
                         textAlign = TextAlign.Center,
                         fontSize = 12.sp,
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        style = MaterialTheme.typography.body1
+
                     )
                 }
             }
@@ -138,7 +149,9 @@ fun HomeScreen() {
                         color = Color.Gray,
                         textAlign = TextAlign.Center,
                         fontSize = 12.sp,
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        style = MaterialTheme.typography.body1
+
                     )
                 }
             }
@@ -161,7 +174,9 @@ fun HomeScreen() {
                         color = Color.Gray,
                         textAlign = TextAlign.Center,
                         fontSize = 12.sp,
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        style = MaterialTheme.typography.body1
+
                     )
 
                 }
@@ -178,19 +193,23 @@ fun HomeScreen() {
                 "  Portfolio", fontWeight = FontWeight.Bold,
                 color = Color.White,
                 textAlign = TextAlign.Center,
-                fontSize = 12.sp
+                fontSize = 12.sp,
+                style = MaterialTheme.typography.subtitle1
+
             )
             Text(
                 "See all", fontWeight = FontWeight.Bold,
                 color = Color.Gray,
                 textAlign = TextAlign.Center,
                 fontSize = 12.sp,
+                style = MaterialTheme.typography.subtitle2
+
             )
         }
 
         LazyRow(modifier = Modifier.fillMaxWidth(1F)) {
             items(items = list) { item ->
-                ListRowItem(item);
+                ListRowItem(item)
             }
         }
 
@@ -199,13 +218,16 @@ fun HomeScreen() {
             color = Color.White,
             textAlign = TextAlign.Start,
             fontSize = 15.sp,
+            style = MaterialTheme.typography.subtitle1,
             modifier = Modifier.padding(10.dp)
         )
 
+
         LazyColumn(modifier = Modifier.fillMaxWidth(1F)) {
             items(items = list) { item ->
-                ListColumn(item);
+                ListColumn(item)
             }
         }
+        Spacer(modifier = Modifier.height(120.dp))
     }
 }
