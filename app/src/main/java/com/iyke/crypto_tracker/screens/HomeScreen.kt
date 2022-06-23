@@ -8,12 +8,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -22,7 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
-import com.iyke.crypto_tracker.common.ListItem
+import com.iyke.crypto_tracker.common.ListColumn
+import com.iyke.crypto_tracker.common.ListRowItem
 import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.ui.theme.Black
 import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
@@ -118,9 +117,7 @@ fun HomeScreen() {
                         fontSize = 12.sp,
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
-
                 }
-
             }
 
             Box {
@@ -191,9 +188,23 @@ fun HomeScreen() {
             )
         }
 
-        LazyRow(modifier = Modifier.fillMaxSize(1F)) {
+        LazyRow(modifier = Modifier.fillMaxWidth(1F)) {
             items(items = list) { item ->
-                ListItem(item);
+                ListRowItem(item);
+            }
+        }
+
+        Text(
+            "Market trend", fontWeight = FontWeight.Bold,
+            color = Color.White,
+            textAlign = TextAlign.Start,
+            fontSize = 15.sp,
+            modifier = Modifier.padding(10.dp)
+        )
+
+        LazyColumn(modifier = Modifier.fillMaxWidth(1F)) {
+            items(items = list) { item ->
+                ListColumn(item);
             }
         }
     }

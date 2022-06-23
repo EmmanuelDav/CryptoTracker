@@ -5,17 +5,20 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,7 +26,6 @@ import com.iyke.crypto_tracker.R
 import com.iyke.crypto_tracker.model.PortfolioCoins
 import com.iyke.crypto_tracker.ui.theme.LightGrayColor
 import com.iyke.crypto_tracker.ui.theme.PinkColor
-import com.iyke.crypto_tracker.ui.theme.Teal200
 import com.iyke.crypto_tracker.ui.theme.blue
 
 
@@ -139,16 +141,19 @@ fun CommonTextField(
 }
 
 @Composable
-fun ListItem(item: PortfolioCoins) {
+fun ListRowItem(item: PortfolioCoins) {
     Box(
         modifier = Modifier
             .padding(8.dp)
             .width(200.dp)
-            .border(2.dp,  Brush.horizontalGradient(
-                colors = listOf(
-                    Teal200, Color.Gray, blue
-                )
-            ), RoundedCornerShape(5))
+            .background(
+                Brush.horizontalGradient(
+                    colors = listOf(
+                        Color.Gray.copy(0.2f), blue.copy(0.1f)
+                    )
+                ),
+                RoundedCornerShape(20.dp)
+            )
             .padding(15.dp)
             .height(210.dp)
     ) {
@@ -159,7 +164,6 @@ fun ListItem(item: PortfolioCoins) {
                 .size(70.dp)
                 .align(Alignment.BottomStart)
                 .padding(10.dp)
-
         )
         Image(
             painter = painterResource(id = R.drawable.ic_baseline_show_chart_24),
@@ -199,7 +203,7 @@ fun ListItem(item: PortfolioCoins) {
             )
             Spacer(modifier = Modifier.height(6.dp))
             Text(
-                text = item.todaysPerf,
+                text = item.todaysIncORDec,
                 color = Color.Green,
                 fontSize = 10.sp,
                 modifier = Modifier.align(Alignment.CenterVertically)
@@ -226,6 +230,62 @@ fun ListItem(item: PortfolioCoins) {
                 color = Color.White,
                 fontSize = 16.sp,
             )
+        }
+    }
+}
+
+@Composable
+fun ListColumn(item: PortfolioCoins) {
+    Box {
+        Row(modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            Row(modifier = Modifier
+                .padding(10.dp)){
+                Image(
+                    painter = painterResource(id = item.coinLogo),
+                    contentDescription = null,
+                    modifier = Modifier.border(2.dp, Color.Gray, CircleShape).padding(15.dp)// add a border (optional)
+                )
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Column(Modifier.align(Alignment.CenterVertically)){
+                    Text(
+                        text = item.currency,
+                        color = Color.White,
+                        fontSize = 16.sp,
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = item.coinShotName,
+                        color = Color.White,
+                        fontSize = 13.sp,
+                    )
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .padding(10.dp).align(Alignment.CenterVertically)
+            ) {
+                Text(
+                    text = item.currentPrice,
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.align(Alignment.End)
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+
+                Text(
+                    text = item.todaysIncORDec,
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.align(Alignment.End)
+                )
+            }
         }
     }
 }
