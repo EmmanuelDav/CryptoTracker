@@ -99,7 +99,10 @@ fun NavigationGraph(navController: NavHostController) {
             }
         }
         composable(BottomNavItem.Wallet.screen_route) {
-            WalletScreen()
+            CryptoTrackerTheme {
+                WalletScreen()
+            }
+
         }
         composable(BottomNavItem.Trade.screen_route) {
             CoinScreen()

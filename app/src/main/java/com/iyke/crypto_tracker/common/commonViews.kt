@@ -8,10 +8,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -23,9 +24,11 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.model.PortfolioCoins
 import com.iyke.crypto_tracker.ui.theme.LightGrayColor
 import com.iyke.crypto_tracker.ui.theme.PinkColor
+import com.iyke.crypto_tracker.ui.theme.White
 import com.iyke.crypto_tracker.ui.theme.blue
 
 
@@ -237,21 +240,26 @@ fun ListRowItem(item: PortfolioCoins) {
 @Composable
 fun ListColumn(item: PortfolioCoins) {
     Box {
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
-            Row(modifier = Modifier
-                .padding(10.dp)){
+            Row(
+                modifier = Modifier
+                    .padding(10.dp)
+            ) {
                 Image(
                     painter = painterResource(id = item.coinLogo),
                     contentDescription = null,
-                    modifier = Modifier.border(2.dp, Color.Gray, CircleShape).padding(15.dp)// add a border (optional)
+                    modifier = Modifier
+                        .border(2.dp, Color.Gray, CircleShape)
+                        .padding(15.dp)// add a border (optional)
                 )
 
                 Spacer(modifier = Modifier.width(10.dp))
 
-                Column(Modifier.align(Alignment.CenterVertically)){
+                Column(Modifier.align(Alignment.CenterVertically)) {
                     Text(
                         text = item.currency,
                         color = Color.White,
@@ -267,7 +275,8 @@ fun ListColumn(item: PortfolioCoins) {
             }
             Column(
                 modifier = Modifier
-                    .padding(10.dp).align(Alignment.CenterVertically)
+                    .padding(10.dp)
+                    .align(Alignment.CenterVertically)
             ) {
                 Text(
                     text = item.currentPrice,
@@ -289,5 +298,56 @@ fun ListColumn(item: PortfolioCoins) {
         }
     }
 }
+
+
+@Composable
+fun CryptoSelection() {
+    var coinName: String by remember { mutableStateOf(list[0].coinName) }
+    var coinLogo: Int by remember { mutableStateOf(list[0].coinLogo) }
+    var expanded by remember { mutableStateOf(false) }
+    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.TopEnd) {
+        Row(
+            Modifier
+                .clickable {
+                    expanded = !expanded
+                }
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) { // Anchor view
+
+            Image(
+                painter = painterResource(id = coinLogo),
+                contentDescription = "user icon",
+            )
+            Spacer(modifier = Modifier.width(5.dp))
+
+            Text(
+                text = coinName,
+                fontSize = 18.sp,
+                color = White,
+                modifier = Modifier.padding(end = 8.dp)
+            ) // Country name label
+            Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = "", tint = Color.White)
+
+            //
+            DropdownMenu(expanded = expanded, onDismissRequest = {
+                expanded = false
+            }) {
+                list.forEach { country ->
+                    DropdownMenuItem(onClick = {
+                        expanded = false
+                        coinName = country.coinName
+                        coinLogo = country.coinLogo
+                    }) {
+                        Text(text = country.coinName)
+                    }
+                }
+            }
+        }
+    }
+
+}
+
 
 
