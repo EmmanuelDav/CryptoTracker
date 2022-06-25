@@ -46,21 +46,22 @@ fun HomeScreen() {
     ) {
         Spacer(modifier = Modifier.height(40.dp))
 
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Column {
                 Text(
-                    text = "Total balance     ",
+                    text = "Total balance",
+                    style = MaterialTheme.typography.body1,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White,
+                    color = Color.Gray,
                     modifier = Modifier
-                        .align(Alignment.CenterHorizontally),
+                        .align(Alignment.Start).padding(horizontal = 10.dp),
                     textAlign = TextAlign.Center,
-                    fontSize = 16.sp,
-                    style = MaterialTheme.typography.body1
+                    fontSize = 13.sp,
                 )
 
                 Text(
-                    text = "  2000.09 USD",
+                    text = "2000.09 USD",
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     modifier = Modifier
@@ -74,9 +75,7 @@ fun HomeScreen() {
             }
 
             Column(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(23.dp), horizontalAlignment = Alignment.End
+                Modifier.padding(10.dp)
             ) {
 
                 Text(
@@ -85,7 +84,8 @@ fun HomeScreen() {
                     color = Color.Green,
                     textAlign = TextAlign.Center,
                     fontSize = 15.sp,
-                    style = MaterialTheme.typography.subtitle1
+                    style = MaterialTheme.typography.subtitle1,
+                    modifier = Modifier.padding(2.dp)
 
                 )
                 Spacer(modifier = Modifier.height(5.dp))
@@ -95,7 +95,8 @@ fun HomeScreen() {
                     color = Color.Gray,
                     textAlign = TextAlign.Center,
                     fontSize = 12.sp,
-                    style = MaterialTheme.typography.subtitle1
+                    modifier = Modifier.padding(2.dp),
+                            style = MaterialTheme.typography.subtitle1
 
                 )
             }

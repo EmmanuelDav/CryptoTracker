@@ -41,7 +41,7 @@ class IntroScreen : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting(name = "")
+                    Screen()
                 }
             }
         }
@@ -52,13 +52,8 @@ class IntroScreen : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     CryptoTrackerTheme {
-        Greeting("Android")
+        Screen()
     }
-}
-
-@Composable
-fun Greeting(name: String) {
-            Screen()
 }
 
 @Composable

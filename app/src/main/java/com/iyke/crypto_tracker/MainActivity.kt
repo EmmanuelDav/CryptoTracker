@@ -22,6 +22,7 @@ import com.iyke.crypto_tracker.screens.CoinScreen
 import com.iyke.crypto_tracker.screens.HomeScreen
 import com.iyke.crypto_tracker.screens.ProfileScreen
 import com.iyke.crypto_tracker.screens.WalletScreen
+import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
 import com.iyke.crypto_tracker.ui.theme.Teal200
 import com.iyke.crypto_trackersealed.BottomNavItem
 
@@ -93,7 +94,9 @@ fun BottomNavigation(navController: NavController) {
 fun NavigationGraph(navController: NavHostController) {
     NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
         composable(BottomNavItem.Home.screen_route) {
-            HomeScreen()
+            CryptoTrackerTheme {
+                HomeScreen()
+            }
         }
         composable(BottomNavItem.Wallet.screen_route) {
             WalletScreen()
