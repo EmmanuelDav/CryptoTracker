@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.common.CombinedTab
 import com.iyke.crypto_tracker.common.CryptoSelection
 import com.iyke.crypto_tracker.ui.theme.*
 
@@ -72,7 +73,6 @@ fun WalletScreen() {
                 .background(color = Green, shape = RoundedCornerShape(15))
                 .padding(25.dp)
         ) {
-
             Column {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -231,5 +231,9 @@ fun WalletScreen() {
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(25.dp))
+
+        CombinedTab()
     }
 }

@@ -5,11 +5,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.Image
+import com.google.accompanist.pager.pagerTabIndicatorOffset
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,16 +21,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.pager.*
 import com.iyke.crypto_tracker.R
 import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.model.PortfolioCoins
-import com.iyke.crypto_tracker.ui.theme.LightGrayColor
-import com.iyke.crypto_tracker.ui.theme.PinkColor
-import com.iyke.crypto_tracker.ui.theme.White
-import com.iyke.crypto_tracker.ui.theme.blue
+import com.iyke.crypto_tracker.ui.theme.*
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -346,8 +347,59 @@ fun CryptoSelection() {
             }
         }
     }
-
 }
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun CombinedTab() {
+    val tabData = listOf(
+        "Tokens" ,
+        "Positions" ,
+        "NFTs" ,
+    )
+    val pagerState = rememberPagerState(
+        pageCount = tabData.size,
+        initialOffscreenLimit = 2,
+        infiniteLoop = true,
+        initialPage = 1,
+    )
+    val tabIndex = pagerState.currentPage
+    val coroutineScope = rememberCoroutineScope()
+    Column {
+        TabRow(backgroundColor = Black,
+            selectedTabIndex = tabIndex,
+            indicator = { tabPositions ->
+                TabRowDefaults.Indicator(
+                    Modifier.pagerTabIndicatorOffset(pagerState, tabPositions), color = White)
+            }
+        ) {
+            tabData.forEachIndexed { index, pair ->
+                Tab(selected = tabIndex == index, onClick = {
+                    coroutineScope.launch {
+                        pagerState.animateScrollToPage(index)
+                    }
+                }, text = {
+                    Text(text = pair)
+                }, selectedContentColor = White)
+            }
+        }
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.weight(1f)
+        ) { index ->
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = tabData[index],
+                )
+            }
+        }
+    }
+}
+
 
 
 
