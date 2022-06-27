@@ -10,4 +10,14 @@ object Data {
         PortfolioCoins("USD Coin","$1.00","+0.01%", R.drawable.usdc,"USD","USDC","76,00",R.drawable.home_dal),
         PortfolioCoins("BNB","$225.0","+4.19%", R.drawable.bnb,"USD","BNB","11,20",R.drawable.home_eadsy),
     )
+
+
+}
+
+
+class Constants {
+    companion object {
+        const val PADDING_SIDE_VALUE = 12
+        const val ELEVATION_VALUE = 10
+    }
 }

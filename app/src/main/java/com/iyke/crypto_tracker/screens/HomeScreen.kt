@@ -1,8 +1,6 @@
 package com.iyke.crypto_tracker.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -38,9 +36,11 @@ fun MyView() {
 
 @Composable
 fun HomeScreen() {
+
     Column(
         modifier = Modifier
             .background(color = Black)
+            .verticalScroll(rememberScrollState())
             .wrapContentSize(Alignment.TopStart)
             .padding(5.dp)
     ) {
@@ -55,7 +55,8 @@ fun HomeScreen() {
                     fontWeight = FontWeight.Bold,
                     color = Color.Gray,
                     modifier = Modifier
-                        .align(Alignment.Start).padding(horizontal = 10.dp),
+                        .align(Alignment.Start)
+                        .padding(horizontal = 10.dp),
                     textAlign = TextAlign.Center,
                     fontSize = 13.sp,
                 )
@@ -223,11 +224,8 @@ fun HomeScreen() {
             modifier = Modifier.padding(10.dp)
         )
 
-
-        LazyColumn(modifier = Modifier.fillMaxWidth(1F)) {
-            items(items = list) { item ->
-                ListColumn(item)
-            }
+        list.forEachIndexed { index, portfolioCoins ->
+            ListColumn(item = portfolioCoins)
         }
         Spacer(modifier = Modifier.height(120.dp))
     }

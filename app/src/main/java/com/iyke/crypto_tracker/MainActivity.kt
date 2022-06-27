@@ -20,7 +20,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.iyke.crypto_tracker.screens.CoinScreen
 import com.iyke.crypto_tracker.screens.HomeScreen
-import com.iyke.crypto_tracker.screens.ProfileScreen
+import com.iyke.crypto_tracker.screens.SettingsScreen
 import com.iyke.crypto_tracker.screens.WalletScreen
 import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
 import com.iyke.crypto_tracker.ui.theme.Teal200
@@ -108,7 +108,7 @@ fun NavigationGraph(navController: NavHostController) {
             CoinScreen()
         }
         composable(BottomNavItem.Profile.screen_route) {
-            ProfileScreen()
+            SettingsScreen()
         }
     }
 }
