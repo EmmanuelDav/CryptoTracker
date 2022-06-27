@@ -6,5 +6,7 @@ class PortfolioCoins(
     var todaysIncORDec: String,
     var coinLogo: Int,
     var currency: String,
-    var coinShotName: String
+    var coinShotName: String,
+    var demoMoney: String,
+    var chat: Int,
 )

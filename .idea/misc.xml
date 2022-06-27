@@ -53,16 +53,30 @@
         <entry key="../../../../layout/compose-model-1656196452016.xml" value="0.22" />
         <entry key="../../../../layout/compose-model-1656267138287.xml" value="0.21" />
         <entry key="../../../../layout/compose-model-1656271390479.xml" value="0.18" />
+        <entry key="../../../../layout/compose-model-1656281971694.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1656282899776.xml" value="0.24074074074074073" />
+        <entry key="../../../../layout/compose-model-1656323072074.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1656323303456.xml" value="0.24074074074074073" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/home-48px.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/home_alk.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/home_ccl.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_balance_wallet_24.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_drop_up_24.xml" value="0.137" />
+        <entry key="app/src/main/res/drawable/ic_baseline_call_made_24.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/ic_baseline_call_received_24.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/ic_baseline_emoji_flags_24.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/ic_baseline_show_chart_24.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/login-48px.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/login.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/login_48px.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/logout-48px.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/logout.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/multiline.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/multiline_chart-48px.xml" value="0.147" />
       </map>
     </option>

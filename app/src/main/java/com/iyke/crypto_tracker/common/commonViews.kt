@@ -5,6 +5,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -170,12 +171,12 @@ fun ListRowItem(item: PortfolioCoins) {
                 .padding(10.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.ic_baseline_show_chart_24),
+            painter = painterResource(id = item.chat),
             contentDescription = "user icon",
             modifier = Modifier
                 .size(100.dp)
                 .align(Alignment.Center)
-                .padding(10.dp)
+                .padding(1.dp)
         )
         Column(
             modifier = Modifier
@@ -242,7 +243,9 @@ fun ListRowItem(item: PortfolioCoins) {
 fun ListColumn(item: PortfolioCoins) {
     Box {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
@@ -297,6 +300,76 @@ fun ListColumn(item: PortfolioCoins) {
                 )
             }
         }
+
+    }
+}
+
+@Composable
+fun ListColumn1(item: PortfolioCoins) {
+    Box {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            Row(
+                modifier = Modifier
+                    .padding(10.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = item.coinLogo),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .border(2.dp, Color.Gray, CircleShape)
+                        .padding(15.dp)// add a border (optional)
+                )
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Column(Modifier.align(Alignment.CenterVertically)) {
+                    Text(
+                        text = item.currency,
+                        color = Color.White,
+                        fontSize = 16.sp,
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = item.coinName,
+                        color = Color.White,
+                        fontSize = 13.sp,
+                    )
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .padding(10.dp)
+                    .align(Alignment.CenterVertically)
+            ) {
+                Text(
+                    text = item.currentPrice,
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.align(Alignment.End)
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+
+                Text(
+                    text = "${item.demoMoney}(${item.todaysIncORDec})",
+                    color = Color.White,
+                    fontSize = 13.sp,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.align(Alignment.End)
+                )
+            }
+        }
+
+        Divider(color = Color.White, thickness = 0.9.dp, modifier = Modifier
+            .padding(5.dp)
+            .align(Alignment.BottomCenter))
+
     }
 }
 
@@ -329,7 +402,11 @@ fun CryptoSelection() {
                 color = White,
                 modifier = Modifier.padding(end = 8.dp)
             ) // Country name label
-            Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = "", tint = Color.White)
+            Icon(
+                imageVector = Icons.Filled.ArrowDropDown,
+                contentDescription = "",
+                tint = Color.White
+            )
 
             //
             DropdownMenu(expanded = expanded, onDismissRequest = {
@@ -353,15 +430,15 @@ fun CryptoSelection() {
 @Composable
 fun CombinedTab() {
     val tabData = listOf(
-        "Tokens" ,
-        "Positions" ,
-        "NFTs" ,
+        "Tokens",
+        "Positions",
+        "NFTs",
     )
     val pagerState = rememberPagerState(
         pageCount = tabData.size,
         initialOffscreenLimit = 2,
         infiniteLoop = true,
-        initialPage = 1,
+        initialPage = 0,
     )
     val tabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
@@ -370,7 +447,8 @@ fun CombinedTab() {
             selectedTabIndex = tabIndex,
             indicator = { tabPositions ->
                 TabRowDefaults.Indicator(
-                    Modifier.pagerTabIndicatorOffset(pagerState, tabPositions), color = White)
+                    Modifier.pagerTabIndicatorOffset(pagerState, tabPositions), color = White
+                )
             }
         ) {
             tabData.forEachIndexed { index, pair ->
@@ -392,11 +470,50 @@ fun CombinedTab() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = tabData[index],
-                )
+                when (index) {
+                    0 -> {
+                        LazyColumn(modifier = Modifier.fillMaxWidth(1F)) {
+                            items(items = list) { item ->
+                                ListColumn1(item)
+                            }
+                        }
+                    }
+                    1 -> {
+                        empty("No opened positions Yet")
+                    }
+                    2 -> {
+                        empty("No NFts yet")
+                    }
+                }
             }
         }
+    }
+}
+
+@Composable
+fun empty(text: String){
+    Column {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_baseline_emoji_flags_24),
+            tint = White,
+            contentDescription = null,
+            modifier = Modifier
+                .border(2.dp, Color.Gray, CircleShape)   // add a border (optional)
+                .padding(15.dp).align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(7.dp))
+
+        Text(
+            text = text,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
+            textAlign = TextAlign.Center,
+            fontSize = 12.sp,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            style = MaterialTheme.typography.body1
+
+        )
     }
 }
 

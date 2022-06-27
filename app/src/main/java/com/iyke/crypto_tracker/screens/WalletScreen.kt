@@ -233,7 +233,6 @@ fun WalletScreen() {
         }
 
         Spacer(modifier = Modifier.height(25.dp))
-
         CombinedTab()
     }
 }
