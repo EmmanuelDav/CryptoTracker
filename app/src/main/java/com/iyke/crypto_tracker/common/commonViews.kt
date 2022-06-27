@@ -241,7 +241,7 @@ fun CurrencyItem(
             )
 
             Text(
-                text = currency.coinShotName,
+                text = currency.currencyCode,
                 style = Typography.subtitle1,
                 color = Gray
             )
@@ -320,7 +320,7 @@ fun ListRowItem(item: PortfolioCoins, onClick: () -> Unit) {
             Spacer(modifier = Modifier.height(6.dp))
 
             Text(
-                text = item.coinShotName,
+                text = item.currencyCode,
                 color = Color.White,
                 fontSize = 12.sp
             )
@@ -400,7 +400,7 @@ fun ListColumn(item: PortfolioCoins) {
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = item.coinShotName,
+                        text = item.currencyCode,
                         color = Color.White,
                         fontSize = 13.sp,
                     )

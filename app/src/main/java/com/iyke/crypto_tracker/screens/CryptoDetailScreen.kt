@@ -1,7 +1,6 @@
 package com.iyke.crypto_tracker.screens
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -18,10 +17,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.iyke.crypto_tracker.MainScreenView
 import com.iyke.crypto_tracker.ui.theme.Typography
 import com.iyke.crypto_tracker.R
-import com.iyke.crypto_tracker.common.CryptoSelection
 import com.iyke.crypto_tracker.common.CurrencyItem
 import com.iyke.crypto_tracker.common.SetPriceAlertSection
 import com.iyke.crypto_tracker.common.ValuesItem
@@ -37,7 +34,7 @@ class CryptoDetailScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CryptoDetailScreen("bnb")
+            CryptoDetailScreen("USDT")
         }
     }
 }
@@ -47,7 +44,7 @@ fun CryptoDetailScreen(
     currencyCode: String,
 
     ) {
-    val currency = list.find { it.coinShotName == currencyCode}!!
+    val currency = list.find { it.currencyCode == currencyCode}!!
 
     Surface(
         modifier = Modifier
@@ -59,13 +56,8 @@ fun CryptoDetailScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = 50.dp)
         ) {
-            // TopNavigationRow(onBackArrowPressed = onBackArrowPressed)
-
             LineChartCardSection(currency = currency)
-
-
             CurrencyDescriptionCard(currency = currency)
-
             SetPriceAlertSection()
         }
     }
@@ -132,7 +124,7 @@ fun StandardButton(
 ) {
     Button(
         onClick = {
-            onButtonClick(currency.coinShotName)
+            onButtonClick(currency.currencyCode)
         },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = Green
