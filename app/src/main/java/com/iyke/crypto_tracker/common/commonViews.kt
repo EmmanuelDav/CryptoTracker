@@ -18,7 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -28,6 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.*
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.model.Constants
+import com.iyke.crypto_tracker.ui.theme.Typography
 import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.model.PortfolioCoins
 import com.iyke.crypto_tracker.ui.theme.*
@@ -53,6 +58,96 @@ fun CommonText(
     )
 }
 
+@Composable
+fun ValuesItem(
+    currency: PortfolioCoins,
+    priceModifier: Modifier = Modifier
+        .padding(top = 20.dp),
+    changesModifier: Modifier = Modifier
+        .padding(top = 5.dp),
+    currencyPriceStyle: TextStyle = Typography.h3,
+    currencyChangesStyle: TextStyle = Typography.h3
+) {
+    var changeColor by remember {
+        mutableStateOf(
+            if(currency.changeType == "I") {
+                Green
+            } else {
+                Red
+            }
+        )
+    }
+
+    var changeOperator by remember {
+        mutableStateOf(
+            if(currency.changeType == "I") {
+                "+"
+            } else {
+                "-"
+            }
+        )
+    }
+
+    Text(
+        text = "£${currency.currentPrice}",
+        style = currencyPriceStyle,
+        modifier = priceModifier
+    )
+
+    Text(
+        text = "$changeOperator${currency}%",
+        style = currencyChangesStyle,
+        color = changeColor,
+        modifier = changesModifier
+    )
+}
+
+
+@Composable
+fun SetPriceAlertSection() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(Constants.PADDING_SIDE_VALUE.dp),
+        shape = MaterialTheme.shapes.medium,
+        elevation = Constants.ELEVATION_VALUE.dp
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(Constants.PADDING_SIDE_VALUE.dp)
+                .fillMaxWidth()
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.notification_color),
+                contentDescription = "Price Alert Icon"
+            )
+
+            SetPriceAlertTextColumn()
+
+            Image(
+                painter = painterResource(id = R.drawable.right_arrow),
+                contentDescription = null
+            )
+        }
+    }
+}
+
+@Composable
+fun SetPriceAlertTextColumn() {
+    Column() {
+        Text(
+            text = "Set Price Alert",
+            style = Typography.h3
+        )
+        Text(
+            text = "Get notified when your coins are moving",
+            style = Typography.subtitle2,
+            color = Gray
+        )
+    }
+}
 @Composable
 fun CommonLoginButton(
     text: String,
@@ -122,6 +217,40 @@ fun CommonGoogleButton(
 }
 
 @Composable
+fun CurrencyItem(
+    currency: PortfolioCoins
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = currency.coinLogo),
+            contentDescription = currency.coinName,
+            modifier = Modifier
+                .size(25.dp)
+        )
+
+        Column(
+            modifier = Modifier
+                .padding(start = Constants.PADDING_SIDE_VALUE.dp)
+        ) {
+            Text(
+                text = currency.coinName,
+                style = Typography.h2,
+                color = Color.Black
+            )
+
+            Text(
+                text = currency.coinShotName,
+                style = Typography.subtitle1,
+                color = Gray
+            )
+        }
+    }
+}
+
+
+@Composable
 fun CommonTextField(
     text: String,
     placeholder: String,
@@ -146,7 +275,7 @@ fun CommonTextField(
 }
 
 @Composable
-fun ListRowItem(item: PortfolioCoins) {
+fun ListRowItem(item: PortfolioCoins, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .padding(8.dp)
@@ -160,7 +289,7 @@ fun ListRowItem(item: PortfolioCoins) {
                 RoundedCornerShape(20.dp)
             )
             .padding(15.dp)
-            .height(210.dp)
+            .height(210.dp).clickable {onClick()}
     ) {
         Image(
             painter = painterResource(id = item.coinLogo),

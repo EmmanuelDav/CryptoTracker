@@ -9,4 +9,5 @@ class PortfolioCoins(
     var coinShotName: String,
     var demoMoney: String,
     var chat: Int,
+    var changeType:String
 )
