@@ -3,6 +3,9 @@ package com.iyke.crypto_tracker.screens
 import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,8 +19,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
+import com.iyke.crypto_tracker.common.ListColumn1
 import com.iyke.crypto_tracker.common.TransactionItem
 import com.iyke.crypto_tracker.model.Constants
+import com.iyke.crypto_tracker.model.Data
 import com.iyke.crypto_tracker.model.Data.transactionList
 import com.iyke.crypto_tracker.ui.theme.Black
 import com.iyke.crypto_tracker.ui.theme.Typography
@@ -57,24 +62,25 @@ fun Transaction() {
 
 
                 val context = LocalContext.current
-
-                transactionList.forEachIndexed { index, transaction ->
-                    TransactionItem(transaction) {
-                        val intent = Intent(context, TransactionDetails::class.java)
-                        intent.putExtra(Constants.SHOTNAME, transaction.transactionID)
-                        context.startActivity(intent)
+                LazyColumn(modifier = Modifier.fillMaxWidth(1F)) {
+                    itemsIndexed(items = transactionList) { index,item->
+                        TransactionItem(item) {
+                            val intent = Intent(context, TransactionDetails::class.java)
+                            intent.putExtra(Constants.SHOTNAME, item.transactionID)
+                            context.startActivity(intent)
+                        }
+                        Divider(
+                            modifier = Modifier
+                                .padding(
+                                    top = Constants.PADDING_SIDE_VALUE.dp,
+                                    bottom = if (transactionList.size - 1 > index) {
+                                        Constants.PADDING_SIDE_VALUE.dp
+                                    } else {
+                                        0.dp
+                                    }
+                                )
+                        )
                     }
-                    Divider(
-                        modifier = Modifier
-                            .padding(
-                                top = Constants.PADDING_SIDE_VALUE.dp,
-                                bottom = if (transactionList.size - 1 > index) {
-                                    Constants.PADDING_SIDE_VALUE.dp
-                                } else {
-                                    0.dp
-                                }
-                            )
-                    )
                 }
             }
         }

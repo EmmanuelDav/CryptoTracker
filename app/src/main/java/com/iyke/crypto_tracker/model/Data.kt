@@ -86,19 +86,19 @@ object Data {
         ),
         Transaction(
             transactionID = 9,
-            description = "Bought Litecoin",
+            description = "Bought Solana",
             amount = 2.0034F,
-            currencyCode = "LTC",
+            currencyCode = "SOL",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 17 Dec"
         ),
         Transaction(
             transactionID = 9,
-            description = "Bought Litecoin",
+            description = "Bought Cardona",
             amount = 2.0034F,
-            currencyCode = "LTC",
+            currencyCode = "ADA",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 1 May"
         ),
 
 
