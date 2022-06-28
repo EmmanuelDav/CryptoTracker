@@ -105,7 +105,9 @@ fun NavigationGraph(navController: NavHostController) {
 
         }
         composable(BottomNavItem.Trade.screen_route) {
-            Transaction()
+            CryptoTrackerTheme {
+                Transaction()
+            }
         }
         composable(BottomNavItem.Profile.screen_route) {
             SettingsScreen()

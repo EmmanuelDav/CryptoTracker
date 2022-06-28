@@ -76,6 +76,30 @@ object Data {
             transactionType = "B",
             transactionDate = "14:20 12 Apr"
         ),
+        Transaction(
+            transactionID = 9,
+            description = "Bought Litecoin",
+            amount = 2.0034F,
+            currencyCode = "LTC",
+            transactionType = "B",
+            transactionDate = "14:20 12 Apr"
+        ),
+        Transaction(
+            transactionID = 9,
+            description = "Bought Litecoin",
+            amount = 2.0034F,
+            currencyCode = "LTC",
+            transactionType = "B",
+            transactionDate = "14:20 12 Apr"
+        ),
+        Transaction(
+            transactionID = 9,
+            description = "Bought Litecoin",
+            amount = 2.0034F,
+            currencyCode = "LTC",
+            transactionType = "B",
+            transactionDate = "14:20 12 Apr"
+        ),
 
 
         )

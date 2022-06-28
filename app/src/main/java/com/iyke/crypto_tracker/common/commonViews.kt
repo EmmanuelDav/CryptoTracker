@@ -628,13 +628,13 @@ fun CombinedTab() {
 }
 
 @Composable
- fun TransactionItem(transaction: Transaction) {
+ fun TransactionItem(transaction: Transaction,onClick: () -> Unit) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(vertical = Constants.PADDING_SIDE_VALUE.dp)
-            .fillMaxWidth()
+            .fillMaxWidth().clickable { onClick() }
     ) {
         TransactionDescriptionSection(transaction)
 
@@ -661,7 +661,8 @@ private fun TransactionAmountSection(
             color = amountColor
         )
 
-        Image(
+        Icon(
+            tint = White,
             painter = painterResource(id = R.drawable.right_arrow),
             contentDescription = null,
             modifier = Modifier
@@ -676,7 +677,8 @@ private fun TransactionDescriptionSection(transaction: Transaction) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
+        Icon(
+            tint = White,
             painter = painterResource(id = R.drawable.transaction),
             contentDescription = "Transaction image",
             modifier = Modifier
@@ -687,7 +689,7 @@ private fun TransactionDescriptionSection(transaction: Transaction) {
             Text(
                 text = transaction.description,
                 style = Typography.h4,
-                color = Blue
+                color = White.copy(0.70f)
             )
 
             Spacer(modifier = Modifier.height(4.dp))
@@ -695,7 +697,7 @@ private fun TransactionDescriptionSection(transaction: Transaction) {
             Text(
                 text = transaction.transactionDate,
                 style = Typography.h5,
-                color = Gray
+                color = White.copy(0.30f)
             )
         }
     }
