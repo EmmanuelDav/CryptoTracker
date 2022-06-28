@@ -3,6 +3,83 @@ package com.iyke.crypto_tracker.model
 import com.iyke.crypto_tracker.R
 
 object Data {
+
+    var transaction = arrayListOf<Transaction>(
+            Transaction(
+                transactionID = 1,
+                description = "Sold Bitcoin",
+                amount = -2.0034F,
+                currencyCode = "Btc",
+                transactionType = "S",
+                transactionDate = "12:20 12 Mar"
+            ),
+            Transaction(
+                transactionID = 2,
+                description = "Bought Ethereum",
+                amount = 2.0034F,
+                currencyCode = "Eth",
+                transactionType = "B",
+                transactionDate = "14:20 12 Apr"
+            ),
+            Transaction(
+                transactionID = 3,
+                description = "Sold Tether",
+                amount = -2.0034F,
+                currencyCode = "USDT",
+                transactionType = "S",
+                transactionDate = "1:20 12 Jan"
+            ),
+            Transaction(
+                transactionID = 4,
+                description = "Bought Tether",
+                amount = 2.0034F,
+                currencyCode = "USDT",
+                transactionType = "B",
+                transactionDate = "14:20 12 Apr"
+            ),
+            Transaction(
+                transactionID = 5,
+                description = "Bought Binance Coin",
+                amount = 2.0034F,
+                currencyCode = "BNB",
+                transactionType = "B",
+                transactionDate = "14:20 12 Apr"
+            ),
+            Transaction(
+                transactionID = 6,
+                description = "Bought Binance Coin",
+                amount = 2.0034F,
+                currencyCode = "LTC",
+                transactionType = "B",
+                transactionDate = "14:20 12 Apr"
+            ),
+            Transaction(
+                transactionID = 7,
+                description = "Bought Ripple",
+                amount = 2.0034F,
+                currencyCode = "XRP",
+                transactionType = "B",
+                transactionDate = "14:20 12 Apr"
+            ),
+            Transaction(
+                transactionID = 8,
+                description = "Bought Litecoin",
+                amount = 2.0034F,
+                currencyCode = "LTC",
+                transactionType = "B",
+                transactionDate = "14:20 12 Apr"
+            ),
+            Transaction(
+                transactionID = 9,
+                description = "Bought Litecoin",
+                amount = 2.0034F,
+                currencyCode = "LTC",
+                transactionType = "B",
+                transactionDate = "14:20 12 Apr"
+            ),
+
+
+    )
     var list = arrayListOf<PortfolioCoins>(
         PortfolioCoins(
             "Bitcoin",
@@ -72,8 +149,6 @@ object Data {
             7.24F,
             ),
     )
-
-
 }
 
 

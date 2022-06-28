@@ -11,6 +11,5 @@ class PortfolioCoins(
     var chat: Int,
     var changeType:String,
     var description:String,
-    var changes:Float
-
+    var changes:Float,
     )
