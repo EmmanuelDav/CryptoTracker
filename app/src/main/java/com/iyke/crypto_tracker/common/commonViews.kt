@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -92,9 +93,10 @@ fun ValuesItem(
     }
 
     Text(
-        text = "£${currency.currentPrice}",
+        text = "${currency.currentPrice}",
         style = currencyPriceStyle,
-        modifier = priceModifier
+        modifier = priceModifier,
+        color = White
     )
 
     Text(
@@ -111,16 +113,10 @@ fun SetPriceAlertSection() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Constants.PADDING_SIDE_VALUE.dp) .background(
-                Brush.horizontalGradient(
-                    colors = listOf(
-                        Color.Gray.copy(0.2f), blue.copy(0.1f)
-                    )
-                ),
-                RoundedCornerShape(20.dp)
-            ),
+            .padding(Constants.PADDING_SIDE_VALUE.dp) ,
         shape = MaterialTheme.shapes.medium,
-        elevation = Constants.ELEVATION_VALUE.dp
+        elevation = Constants.ELEVATION_VALUE.dp,
+        backgroundColor = Color.Gray.copy(0.2f)
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -136,7 +132,8 @@ fun SetPriceAlertSection() {
 
             SetPriceAlertTextColumn()
 
-            Image(
+            Icon(
+                tint = Color.White,
                 painter = painterResource(id = R.drawable.right_arrow),
                 contentDescription = null
             )
@@ -149,12 +146,13 @@ fun SetPriceAlertTextColumn() {
     Column() {
         Text(
             text = "Set Price Alert",
-            style = Typography.h3
+            style = Typography.h3,
+            color = White
         )
         Text(
             text = "Get notified when your coins are moving",
             style = Typography.subtitle2,
-            color = Gray
+            color = White
         )
     }
 }
@@ -247,13 +245,13 @@ fun CurrencyItem(
             Text(
                 text = currency.coinName,
                 style = Typography.h2,
-                color = Color.Black
+                color = White
             )
 
             Text(
                 text = currency.currencyCode,
                 style = Typography.subtitle1,
-                color = Gray
+                color = White
             )
         }
     }
@@ -431,7 +429,7 @@ fun ListColumn(item: PortfolioCoins) {
                 Spacer(modifier = Modifier.height(2.dp))
 
                 Text(
-                    text = item.todaysIncORDec,
+                    text = item.demoMoney +"("+item.todaysIncORDec+")",
                     color = Color.Green,
                     fontSize = 13.sp,
                     textAlign = TextAlign.End,

@@ -16,27 +16,32 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.iyke.crypto_tracker.ui.theme.Typography
 import com.iyke.crypto_tracker.R
 import com.iyke.crypto_tracker.common.CurrencyItem
 import com.iyke.crypto_tracker.common.SetPriceAlertSection
 import com.iyke.crypto_tracker.common.ValuesItem
 import com.iyke.crypto_tracker.model.Constants
+import com.iyke.crypto_tracker.model.Constants.Companion.SHOTNAME
 import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.model.PortfolioCoins
-import com.iyke.crypto_tracker.ui.theme.Black
-import com.iyke.crypto_tracker.ui.theme.Green
-import com.iyke.crypto_tracker.ui.theme.blue
+import com.iyke.crypto_tracker.ui.theme.*
 
 
 class CryptoDetailScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CryptoDetailScreen("USDT",
+            val context = LocalContext.current
+
+            val intent = (context as CryptoDetailScreen).intent
+
+            val shotName = intent.getStringExtra(SHOTNAME)
+
+            CryptoDetailScreen(shotName!!,
                 onBackArrowPressed = {
 
                 },
@@ -54,12 +59,16 @@ fun CryptoDetailScreen(
     onButtonClick: (String) -> Unit
 
 ) {
+
+
     val currency = list.find { it.currencyCode == currencyCode }!!
 
     Surface(
         modifier = Modifier
             .fillMaxSize(),
         color = Black
+
+
     ) {
         Column(
             modifier = Modifier
@@ -84,17 +93,12 @@ private fun CurrencyDescriptionCard(currency: PortfolioCoins) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Constants.PADDING_SIDE_VALUE.dp)
-            .background(
-                Brush.horizontalGradient(
-                    colors = listOf(
-                        Color.Gray.copy(0.2f), blue.copy(0.1f)
-                    )
-                ),
-                RoundedCornerShape(20.dp)
-            ),
+            .padding(Constants.PADDING_SIDE_VALUE.dp),
+
         shape = MaterialTheme.shapes.medium,
-        elevation = Constants.ELEVATION_VALUE.dp
+       // elevation = Constants.ELEVATION_VALUE.dp,
+        backgroundColor = Color.Gray.copy(0.2f)
+
     ) {
         Column(
             modifier = Modifier
@@ -103,14 +107,16 @@ private fun CurrencyDescriptionCard(currency: PortfolioCoins) {
         ) {
             Text(
                 text = "About ${currency.coinName}",
-                style = Typography.h2
+                style = Typography.h2,
+                color = Color.White
             )
 
             Spacer(modifier = Modifier.height(2.dp))
 
             Text(
                 text = "${currency.description}",
-                style = Typography.subtitle2
+                style = Typography.subtitle2,
+                color = Color.White
             )
         }
     }
@@ -124,17 +130,10 @@ private fun BuyCryptoCard(
     Card(
         modifier = Modifier
             .padding(Constants.PADDING_SIDE_VALUE.dp)
-            .fillMaxWidth()
-            .background(
-                Brush.horizontalGradient(
-                    colors = listOf(
-                        Color.Gray.copy(0.2f), blue.copy(0.1f)
-                    )
-                ),
-                RoundedCornerShape(20.dp)
-            ),
-        elevation = Constants.ELEVATION_VALUE.dp,
-        shape = MaterialTheme.shapes.medium
+            .fillMaxWidth(),
+       // elevation = Constants.ELEVATION_VALUE.dp,
+        shape = MaterialTheme.shapes.medium,
+        backgroundColor = Color.Gray.copy(0.2f)
     ) {
         Column {
             CurrencyInfoBuyRow(currency = currency)
@@ -198,13 +197,14 @@ private fun CurrencyInfoBuyRow(currency: PortfolioCoins) {
                 Text(
                     text = "",
                     style = Typography.subtitle2,
-                    color = Black
+                    color = White
                 )
             }
 
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.right_arrow),
                 contentDescription = null,
+                tint = White,
                 modifier = Modifier
                     .clipToBounds()
                     .padding(start = (Constants.PADDING_SIDE_VALUE * 1.5).dp)
@@ -218,17 +218,11 @@ private fun LineChartCardSection(currency: PortfolioCoins) {
     Card(
         modifier = Modifier
             .padding(Constants.PADDING_SIDE_VALUE.dp)
-            .fillMaxWidth()
-            .background(
-                Brush.horizontalGradient(
-                    colors = listOf(
-                        Color.Gray.copy(0.2f), blue.copy(0.1f)
-                    )
-                ),
-                RoundedCornerShape(20.dp)
-            ),
-        elevation = Constants.ELEVATION_VALUE.dp,
-        shape = MaterialTheme.shapes.medium
+            .fillMaxWidth(),
+       // elevation = Constants.ELEVATION_VALUE.dp,
+        shape = MaterialTheme.shapes.medium,
+        backgroundColor = Color.Gray.copy(0.2f)
+
     ) {
         Column(
             modifier = Modifier
@@ -319,8 +313,8 @@ private fun BackRowItem(onBackArrowPressed: () -> Unit) {
     ) {
         Icon(
             imageVector = Icons.Default.ArrowBack,
-            contentDescription = "Go back",
-            modifier = Modifier
+            contentDescription = "Go back", tint = Color.White,
+                    modifier = Modifier
                 .size(25.dp)
                 .clickable {
                     onBackArrowPressed()
@@ -331,21 +325,8 @@ private fun BackRowItem(onBackArrowPressed: () -> Unit) {
             text = "Back",
             modifier = Modifier
                 .padding(start = 8.dp),
-            style = Typography.h2
+            style = Typography.h2,
+            color = Color.White
         )
     }
-}
-
-@Preview
-@Composable
-fun CyptoDetailScreenPreview() {
-    CryptoDetailScreen(
-        currencyCode = "ETH",
-        onBackArrowPressed = {
-
-        },
-        onButtonClick = {
-
-        }
-    )
 }

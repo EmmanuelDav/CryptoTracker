@@ -25,6 +25,7 @@ import com.iyke.crypto_tracker.MainActivity
 import com.iyke.crypto_tracker.R
 import com.iyke.crypto_tracker.common.ListColumn
 import com.iyke.crypto_tracker.common.ListRowItem
+import com.iyke.crypto_tracker.model.Constants.Companion.SHOTNAME
 import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.ui.theme.Black
 import com.iyke.crypto_tracker.ui.theme.CryptoTrackerTheme
@@ -215,7 +216,9 @@ fun HomeScreen() {
         LazyRow(modifier = Modifier.fillMaxWidth(1F)) {
             items(items = list) { item ->
                 ListRowItem(item){
-                    context.startActivity(Intent(context, CryptoDetailScreen::class.java))
+                    val intent = Intent(context, CryptoDetailScreen::class.java)
+                    intent.putExtra(SHOTNAME,item.currencyCode)
+                    context.startActivity(intent)
                 }
             }
         }
