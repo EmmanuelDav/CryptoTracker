@@ -4,7 +4,7 @@ import com.iyke.crypto_tracker.R
 
 object Data {
 
-    var transaction = arrayListOf<Transaction>(
+    var transactionList = arrayListOf<Transaction>(
             Transaction(
                 transactionID = 1,
                 description = "Sold Bitcoin",

@@ -16,8 +16,10 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.res.painterResource
@@ -35,6 +37,7 @@ import com.iyke.crypto_tracker.model.Constants
 import com.iyke.crypto_tracker.ui.theme.Typography
 import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.model.PortfolioCoins
+import com.iyke.crypto_tracker.model.Transaction
 import com.iyke.crypto_tracker.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -622,6 +625,80 @@ fun CombinedTab() {
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+ fun TransactionItem(transaction: Transaction) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .padding(vertical = Constants.PADDING_SIDE_VALUE.dp)
+            .fillMaxWidth()
+    ) {
+        TransactionDescriptionSection(transaction)
+
+        TransactionAmountSection(transaction)
+    }
+}
+
+@Composable
+private fun TransactionAmountSection(
+    transaction: Transaction,
+) {
+    val amountColor = if (transaction.transactionType == "S") {
+        com.iyke.crypto_tracker.ui.theme.Red
+    } else {
+        Green
+    }
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = "${transaction.amount} ${transaction.currencyCode}",
+            style = Typography.h2,
+            color = amountColor
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.right_arrow),
+            contentDescription = null,
+            modifier = Modifier
+                .clipToBounds()
+                .padding(start = (Constants.PADDING_SIDE_VALUE * 1.5).dp)
+        )
+    }
+}
+
+@Composable
+private fun TransactionDescriptionSection(transaction: Transaction) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.transaction),
+            contentDescription = "Transaction image",
+            modifier = Modifier
+                .padding(end = (Constants.PADDING_SIDE_VALUE * 1.5).dp)
+        )
+
+        Column {
+            Text(
+                text = transaction.description,
+                style = Typography.h4,
+                color = Blue
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                text = transaction.transactionDate,
+                style = Typography.h5,
+                color = Gray
+            )
         }
     }
 }
