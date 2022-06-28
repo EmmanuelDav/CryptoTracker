@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -27,14 +29,20 @@ import com.iyke.crypto_tracker.model.Data.list
 import com.iyke.crypto_tracker.model.PortfolioCoins
 import com.iyke.crypto_tracker.ui.theme.Black
 import com.iyke.crypto_tracker.ui.theme.Green
-
+import com.iyke.crypto_tracker.ui.theme.blue
 
 
 class CryptoDetailScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CryptoDetailScreen("USDT")
+            CryptoDetailScreen("USDT",
+                onBackArrowPressed = {
+
+                },
+                onButtonClick = {
+
+                })
         }
     }
 }
@@ -42,9 +50,11 @@ class CryptoDetailScreen : ComponentActivity() {
 @Composable
 fun CryptoDetailScreen(
     currencyCode: String,
+    onBackArrowPressed: () -> Unit,
+    onButtonClick: (String) -> Unit
 
-    ) {
-    val currency = list.find { it.currencyCode == currencyCode}!!
+) {
+    val currency = list.find { it.currencyCode == currencyCode }!!
 
     Surface(
         modifier = Modifier
@@ -56,7 +66,13 @@ fun CryptoDetailScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = 50.dp)
         ) {
+            TopNavigationRow(onBackArrowPressed = onBackArrowPressed)
+
             LineChartCardSection(currency = currency)
+            BuyCryptoCard(
+                currency = currency,
+                onButtonClick = onButtonClick
+            )
             CurrencyDescriptionCard(currency = currency)
             SetPriceAlertSection()
         }
@@ -68,7 +84,15 @@ private fun CurrencyDescriptionCard(currency: PortfolioCoins) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Constants.PADDING_SIDE_VALUE.dp),
+            .padding(Constants.PADDING_SIDE_VALUE.dp)
+            .background(
+                Brush.horizontalGradient(
+                    colors = listOf(
+                        Color.Gray.copy(0.2f), blue.copy(0.1f)
+                    )
+                ),
+                RoundedCornerShape(20.dp)
+            ),
         shape = MaterialTheme.shapes.medium,
         elevation = Constants.ELEVATION_VALUE.dp
     ) {
@@ -85,7 +109,7 @@ private fun CurrencyDescriptionCard(currency: PortfolioCoins) {
             Spacer(modifier = Modifier.height(2.dp))
 
             Text(
-                text = "${currency.currentPrice}",
+                text = "${currency.description}",
                 style = Typography.subtitle2
             )
         }
@@ -100,11 +124,19 @@ private fun BuyCryptoCard(
     Card(
         modifier = Modifier
             .padding(Constants.PADDING_SIDE_VALUE.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(
+                Brush.horizontalGradient(
+                    colors = listOf(
+                        Color.Gray.copy(0.2f), blue.copy(0.1f)
+                    )
+                ),
+                RoundedCornerShape(20.dp)
+            ),
         elevation = Constants.ELEVATION_VALUE.dp,
         shape = MaterialTheme.shapes.medium
     ) {
-        Column() {
+        Column {
             CurrencyInfoBuyRow(currency = currency)
 
             StandardButton(
@@ -186,7 +218,15 @@ private fun LineChartCardSection(currency: PortfolioCoins) {
     Card(
         modifier = Modifier
             .padding(Constants.PADDING_SIDE_VALUE.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(
+                Brush.horizontalGradient(
+                    colors = listOf(
+                        Color.Gray.copy(0.2f), blue.copy(0.1f)
+                    )
+                ),
+                RoundedCornerShape(20.dp)
+            ),
         elevation = Constants.ELEVATION_VALUE.dp,
         shape = MaterialTheme.shapes.medium
     ) {
@@ -198,7 +238,7 @@ private fun LineChartCardSection(currency: PortfolioCoins) {
 
 //                    Insert line chart later
             Image(
-                painter = painterResource(id = R.drawable.sample_line_chart_image),
+                painter = painterResource(id = R.drawable.tradingv),
                 contentDescription = "Line chart image",
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -212,7 +252,7 @@ private fun LineChartCardSection(currency: PortfolioCoins) {
 private fun CardCurrencyInfoSection(
     currency: PortfolioCoins
 ) {
-    Column() {
+    Column {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
@@ -222,7 +262,7 @@ private fun CardCurrencyInfoSection(
         ) {
             CurrencyItem(currency = currency)
 
-            Column() {
+            Column {
                 ValuesItem(
                     currency = currency,
                     priceModifier = Modifier,
@@ -261,7 +301,7 @@ private fun FavouritesStarItem(
     isStarNeeded: Boolean = true
 ) {
     if (isStarNeeded) {
-        Row() {
+        Row {
             Image(
                 painter = painterResource(id = R.drawable.star),
                 contentDescription = "favourites start",
@@ -301,5 +341,11 @@ private fun BackRowItem(onBackArrowPressed: () -> Unit) {
 fun CyptoDetailScreenPreview() {
     CryptoDetailScreen(
         currencyCode = "ETH",
+        onBackArrowPressed = {
+
+        },
+        onButtonClick = {
+
+        }
     )
 }

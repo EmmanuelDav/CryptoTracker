@@ -95,7 +95,7 @@ fun ValuesItem(
     )
 
     Text(
-        text = "$changeOperator${currency}%",
+        text = "$changeOperator${currency.changes}%",
         style = currencyChangesStyle,
         color = changeColor,
         modifier = changesModifier
@@ -108,7 +108,14 @@ fun SetPriceAlertSection() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Constants.PADDING_SIDE_VALUE.dp),
+            .padding(Constants.PADDING_SIDE_VALUE.dp) .background(
+                Brush.horizontalGradient(
+                    colors = listOf(
+                        Color.Gray.copy(0.2f), blue.copy(0.1f)
+                    )
+                ),
+                RoundedCornerShape(20.dp)
+            ),
         shape = MaterialTheme.shapes.medium,
         elevation = Constants.ELEVATION_VALUE.dp
     ) {
@@ -387,7 +394,7 @@ fun ListColumn(item: PortfolioCoins) {
                     contentDescription = null,
                     modifier = Modifier
                         .border(2.dp, Color.Gray, CircleShape)
-                        .padding(15.dp)// add a border (optional)
+                        .padding(15.dp)
                 )
 
                 Spacer(modifier = Modifier.width(10.dp))

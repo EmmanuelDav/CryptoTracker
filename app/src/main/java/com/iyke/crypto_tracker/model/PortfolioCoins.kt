@@ -9,5 +9,8 @@ class PortfolioCoins(
     var currencyCode: String,
     var demoMoney: String,
     var chat: Int,
-    var changeType:String
-)
+    var changeType:String,
+    var description:String,
+    var changes:Float
+
+    )
