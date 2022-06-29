@@ -1,7 +1,7 @@
 package com.iyke.crypto_tracker.model
 
 data class Transaction(
-    val transactionID: Int,
+    var transactionID: Int,
     val description: String,
     val amount: Float,
     val currencyCode: String,

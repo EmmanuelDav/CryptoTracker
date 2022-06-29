@@ -41,13 +41,13 @@ fun value() {
 @Composable
 fun Transaction() {
     Surface(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+        modifier = Modifier.fillMaxSize()
         , color = Black
     ) {
         Card(
             modifier = Modifier
                 .padding(Constants.PADDING_SIDE_VALUE.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth().verticalScroll(rememberScrollState()),
             shape = MaterialTheme.shapes.medium,
             backgroundColor = Color.Gray.copy(0.2f)
         ) {

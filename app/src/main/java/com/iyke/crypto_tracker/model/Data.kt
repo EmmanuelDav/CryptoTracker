@@ -3,7 +3,7 @@ package com.iyke.crypto_tracker.model
 import com.iyke.crypto_tracker.R
 
 object Data {
-    var transactionList = arrayListOf<Transaction>(
+    var transactionList = arrayListOf(
         Transaction(
             transactionID = 1,
             description = "Sold Bitcoin",
@@ -194,5 +194,6 @@ class Constants {
         const val PADDING_SIDE_VALUE = 12
         const val ELEVATION_VALUE = 10
         const val SHOTNAME = "shotName"
+        const val Id = "id"
     }
 }
