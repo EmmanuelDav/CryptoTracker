@@ -3,6 +3,7 @@ package com.iyke.crypto_tracker.screens
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import com.iyke.crypto_tracker.model.Constants
 
@@ -18,4 +19,9 @@ class TransactionDetails : ComponentActivity() {
 
         }
     }
+}
+
+@Composable
+fun Transactions(){
+
 }

@@ -10,7 +10,8 @@ object Data {
             amount = -2.0034F,
             currencyCode = "Btc",
             transactionType = "S",
-            transactionDate = "12:20 12 Mar"
+            transactionDate = "12:20 12 Mar",
+            R.drawable.bbtc
         ),
         Transaction(
             transactionID = 2,
@@ -18,7 +19,8 @@ object Data {
             amount = 2.0034F,
             currencyCode = "Eth",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.eth
         ),
         Transaction(
             transactionID = 3,
@@ -26,7 +28,8 @@ object Data {
             amount = -2.0034F,
             currencyCode = "USDT",
             transactionType = "S",
-            transactionDate = "1:20 12 Jan"
+            transactionDate = "1:20 12 Jan",
+            R.drawable.tether
         ),
         Transaction(
             transactionID = 4,
@@ -34,7 +37,8 @@ object Data {
             amount = 2.0034F,
             currencyCode = "USDT",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.tether
         ),
         Transaction(
             transactionID = 5,
@@ -42,7 +46,8 @@ object Data {
             amount = 2.0034F,
             currencyCode = "BNB",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.bnb
         ),
         Transaction(
             transactionID = 6,
@@ -50,7 +55,8 @@ object Data {
             amount = 2.0034F,
             currencyCode = "LTC",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.bnb
         ),
         Transaction(
             transactionID = 7,
@@ -58,7 +64,8 @@ object Data {
             amount = 2.0034F,
             currencyCode = "XRP",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.xrp
         ),
         Transaction(
             transactionID = 8,
@@ -66,7 +73,8 @@ object Data {
             amount = 2.0034F,
             currencyCode = "LTC",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.litcoin
         ),
         Transaction(
             transactionID = 9,
@@ -74,7 +82,8 @@ object Data {
             amount = 2.0034F,
             currencyCode = "LTC",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.litcoin
         ),
         Transaction(
             transactionID = 9,
@@ -82,7 +91,9 @@ object Data {
             amount = 2.0034F,
             currencyCode = "LTC",
             transactionType = "B",
-            transactionDate = "14:20 12 Apr"
+            transactionDate = "14:20 12 Apr",
+            R.drawable.litcoin
+
         ),
         Transaction(
             transactionID = 9,
@@ -90,15 +101,18 @@ object Data {
             amount = 2.0034F,
             currencyCode = "SOL",
             transactionType = "B",
-            transactionDate = "14:20 17 Dec"
-        ),
+            transactionDate = "14:20 17 Dec",
+            R.drawable.sol
+
+            ),
         Transaction(
             transactionID = 9,
             description = "Bought Cardona",
             amount = 2.0034F,
             currencyCode = "ADA",
             transactionType = "B",
-            transactionDate = "14:20 1 May"
+            transactionDate = "14:20 1 May",
+            R.drawable.ada
         ),
 
 

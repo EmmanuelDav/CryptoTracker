@@ -6,5 +6,6 @@ data class Transaction(
     val amount: Float,
     val currencyCode: String,
     val transactionType: String,
-    val transactionDate: String
+    val transactionDate: String,
+    var Icon:Int
 )
