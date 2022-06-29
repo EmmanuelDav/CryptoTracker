@@ -70,7 +70,7 @@ fun Transaction() {
                 transactionList.forEachIndexed { index, transaction ->
                     TransactionItem(transaction) {
                         val intent = Intent(context, TransactionDetails::class.java)
-                        intent.putExtra(Constants.SHOTNAME, transaction.transactionID)
+                        intent.putExtra(Constants.Id, transaction.transactionID)
                         context.startActivity(intent)
                     }
                     Divider(

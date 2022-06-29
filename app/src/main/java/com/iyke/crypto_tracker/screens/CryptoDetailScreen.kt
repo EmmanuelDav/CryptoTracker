@@ -43,7 +43,7 @@ class CryptoDetailScreen : ComponentActivity() {
 
             CryptoDetailScreen(shotName!!,
                 onBackArrowPressed = {
-
+                    finish()
                 },
                 onButtonClick = {
 

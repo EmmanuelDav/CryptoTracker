@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iyke.crypto_tracker.R
 import com.iyke.crypto_tracker.model.Constants
+import com.iyke.crypto_tracker.model.Data
 import com.iyke.crypto_tracker.model.Data.transactionList
 import com.iyke.crypto_tracker.model.Transaction
 import com.iyke.crypto_tracker.ui.theme.Black
@@ -43,7 +44,7 @@ class TransactionDetails : ComponentActivity() {
 
             Transactions(id,
                 onBackArrowPressed = {
-
+            finish()
             },
                 onButtonClick = {
 
@@ -58,6 +59,8 @@ fun Transactions(
     onBackArrowPressed: () -> Unit,
     onButtonClick: (String) -> Unit
 ) {
+    val currency = transactionList.find { it.transactionID == id }!!
+
 
     Column(
         modifier = Modifier
@@ -72,14 +75,14 @@ fun Transactions(
 
         Column {
             Image(
-                painter = painterResource(id = R.drawable.ada),
+                painter = painterResource(id = currency.Icon),
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(15.dp)
+                    .padding(15.dp).size(60.dp)
                     .align(Alignment.CenterHorizontally)
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             Divider(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -88,7 +91,7 @@ fun Transactions(
             )
 
             Text(
-                text = "Bitcoin",
+                text = currency.currencyCode ,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 textAlign = TextAlign.Center,
@@ -103,16 +106,15 @@ fun Transactions(
                     .background(color = White)
             )
         }
-        ItemDescription(tittle = "Amount", text = "5,000")
+        ItemDescription(tittle = "Amount", text = currency.amount.toString())
+        Spacer(modifier = Modifier.height(10.dp))
+        ItemDescription(tittle = "TimeStamp", text = currency.transactionDate)
         Spacer(modifier = Modifier.height(10.dp))
 
-        ItemDescription(tittle = "TimeStamp", text = "5,000")
+        ItemDescription(tittle = "Type", text = currency.transactionType)
         Spacer(modifier = Modifier.height(10.dp))
 
-        ItemDescription(tittle = "Amount", text = "5,000")
-        Spacer(modifier = Modifier.height(10.dp))
-
-        ItemDescription(tittle = "Amount", text = "5,000")
+        ItemDescription(tittle = "Description", text = currency.description)
     }
 }
 
@@ -152,6 +154,11 @@ private fun ItemDescription(
 @Composable
 fun View() {
     CryptoTrackerTheme {
-        Transactions()
+        Transactions(2,  onBackArrowPressed = {
+
+        },
+            onButtonClick = {
+
+            })
     }
 }
