@@ -33,5 +33,5 @@ Kotlin APIs.
     - Support for dark mode
     - Scrollview with recyclerview issue (recyclerView.setNestedScrollingEnabled(false) isn't available in compose)
     - Scrollview goes below bottom navigation view 
-      Thanks happy coding
+    - Thanks happy coding
     
