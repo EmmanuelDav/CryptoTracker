@@ -1,6 +1,6 @@
 # Compose Crypto Exchange
 
-A Crypto exchange ui demo using jetpackCompose 
+A Crypto exchange ui using jetpackCompose containing samples that help you learn, understand and implement jetpack compose in your next android project
 
 ## Demo
 
@@ -8,19 +8,15 @@ A Crypto exchange ui demo using jetpackCompose
 <img src="app/ScreenShot/screen-20220630-124219_2.gif" /> 
 </p>
 
-
 <h2 align="left">Screenshots</h2>
-<h4 align="center">
+<h4 align="start">
 <img src="app/ScreenShot/Screenshot_20220728-113337.png" width="30%" vspace="10" hspace="10">
 <img src="app/ScreenShot/Screenshot_20220728-113346.png" width="30%" vspace="10" hspace="10">
 <img src="app/ScreenShot/Screenshot_20220728-113355.png" width="30%" vspace="10" hspace="10">
 <img src="app/ScreenShot/Screenshot_20220728-113407.png" width="30%" vspace="10" hspace="10">
 <img src="app/ScreenShot/Screenshot_20220728-114041.png" width="30%" vspace="10" hspace="10">
 <img src="app/ScreenShot/Screenshot_20220728-113427.png" width="30%" vspace="10" hspace="10">
-<img src="app/ScreenShot/Screenshot_20220728-114048.png" width="30%" vspace="10" hspace="10">
-
 <br>
-
 
 # Jetpack Compose
 
